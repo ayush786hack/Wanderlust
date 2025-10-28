@@ -11,10 +11,17 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
             rel="stylesheet">
+            <link rel="stylesheet" href="/css/rating.css">
+              <link
+      href="https://unpkg.com/maplibre-gl@3.6.1/dist/maplibre-gl.css"
+      rel="stylesheet"
+    />
 </head>
 <body>
     <%- include("../includes/navbar.ejs")%>
-    <div class="container"><%-body%></div>
+    <div class="container">
+        <%- include("../includes/flash.ejs")%>
+        <%-body%></div>
     <%-include("../includes/footer.ejs")%>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
@@ -24,6 +31,23 @@
         integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
         <script src="/js/script.js"></script>
+         <script src="https://unpkg.com/maplibre-gl@3.6.1/dist/maplibre-gl.js"></script>
+         <script>
+  const map = new maplibregl.Map({
+    container: 'map',
+    style: 'https://demotiles.maplibre.org/style.json', // free map style
+    center: [78.0322, 30.3165], // Dehradun
+    zoom: 1,
+  });
+
+  map.addControl(new maplibregl.NavigationControl());
+
+  new maplibregl.Marker()
+    .setLngLat([78.0322, 30.3165])
+    .setPopup(new maplibregl.Popup().setText("Hello from Dehradun!"))
+    .addTo(map);
+</script>
+
 </body>
 
 </html>
